@@ -9,68 +9,69 @@
 </head>
 
 <body>
-    <form action="/action_page.php" method="get">
-        <input type="search" value="이름" size="45"><br><br>
-        <input type="search" value="아이디" size="45"><br><br>
-        <input type="search" value="비밀번호" size="45">
-        <a href="https://www.google.co.kr" style="font-size:13px">비밀번호 도움말</a><br><br>
-        <input type="search" value="비밀번호 재입력" size="45"><br><br>
-        <input type="search" value="이메일" size="27"> @
-        <select id="email">
-            <option value="email">선택</option>
-            <option value="gmail">gmail.com</option>
-            <option value="naver">naver.com</option>
-            <option value="daum">daum.net</option>
-            <option value="hanmail">hanmail.net</option>
-        </select>
-        <input type="submit" value="Submit">
-        <br><br>
-        <select id="first3number">
-            <option value="phone">전화번호</option>
-            <option value="서울">02</option>
-            <option value="경기">031</option>
-            <option value="인천">032</option>
-            <option value="강원">033</option>
-            <option value="충남">041</option>
-            <option value="대전">042</option>
-            <option value="충북">043</option>
-            <option value="세종">044</option>
-            <option value="부산">051</option>
-            <option value="울산">052</option>
-            <option value="대구">053</option>
-            <option value="경북">054</option>
-            <option value="전남">061</option>
-            <option value="광주">062</option>
-            <option value="전북">063</option>
-            <option value="제주">064</option>
-        </select>
-        - <input type="search" size="11">
-        - <input type="search" size="12">
-        <br><br>
-        <select id="first3number">
-            <option value="phone">휴대폰 번호</option>
-            <option value="010">010</option>
-            <option value="011">011</option>
-            <option value="017">017</option>
-            <option value="018">018</option>
-            <option value="019">019</option>
-        </select>
-        - <input type="search" size="10">
-        - <input type="search" size="10">
-        <input type="submit" value="휴대폰 인증">
-        <br><br>
-        <input type="radio" id="select1" name="phoneNumber" value="select1">
-        <label for="select1" style="font-size:15px">인증받은 휴대폰 번호를 대표번호로 사용</label>
-        <input type="radio" id="select2" name="phoneNumber" value="select2">
-        <label for="select2" style="font-size:15px">다른번호 등록</label>
-        <input type="radio" id="select3" name="phoneNumber" value="select3">
-        <label for="select3" style="font-size:15px">다음에 등록함</label><br><br>
-        <input type="search" value="우편번호" size="45">
-        <input type="submit" value="주소찾기"><br><br>
-        <div style="text-align:center; transform: translate(-37%);"><input type="submit"
-                style="color:white; background-color:rgb(255, 38, 0)" value="가입신청">
+    <div style="text-align:center;">
+        <form action="/action_page.php" method="get">
+            <input type="search" value="이름" size="45"><br><br>
+            <input type="search" value="아이디" size="45"><br><br>
+            <input type="search" value="비밀번호" size="31">
+            <a href="https://www.google.co.kr" style="font-size:13px">비밀번호 도움말</a><br><br>
+            <input type="search" value="비밀번호 재입력" size="46"><br><br>
+            <input type="search" value="이메일" size="20"> @
+            <select id="email">
+                <option value="email">선택</option>
+                <option value="gmail">gmail.com</option>
+                <option value="naver">naver.com</option>
+                <option value="daum">daum.net</option>
+                <option value="hanmail">hanmail.net</option>
+            </select>
+            <input type="submit" value="Submit">
+            <br><br>
+            <select id="first3number">
+                <option value="phone">전화번호</option>
+                <option value="서울">02</option>
+                <option value="경기">031</option>
+                <option value="인천">032</option>
+                <option value="강원">033</option>
+                <option value="충남">041</option>
+                <option value="대전">042</option>
+                <option value="충북">043</option>
+                <option value="세종">044</option>
+                <option value="부산">051</option>
+                <option value="울산">052</option>
+                <option value="대구">053</option>
+                <option value="경북">054</option>
+                <option value="전남">061</option>
+                <option value="광주">062</option>
+                <option value="전북">063</option>
+                <option value="제주">064</option>
+            </select>
+            - <input type="search" size="13">
+            - <input type="search" size="12">
+            <br><br>
+            <select id="first3number">
+                <option value="010"> 010 </option>
+                <option value="011"> 011 </option>
+                <option value="017"> 017 </option>
+                <option value="018"> 018 </option>
+                <option value="019"> 019 </option>
+            </select>
+            - <input type="search" size="8">
+            - <input type="search" size="8">
+            <input type="submit" value="휴대폰 인증">
+            <br><br>
+            <input type="radio" id="select1" name="phoneNumber" value="select1">
+            <label for="select1" style="font-size:12px">인증받은 휴대폰 번호를 대표번호로 사용</label>
+            <input type="radio" id="select2" name="phoneNumber" value="select2">
+            <label for="select2" style="font-size:12px">다른번호 등록</label>
+            <input type="radio" id="select3" name="phoneNumber" value="select3">
+            <label for="select3" style="font-size:12px">다음에 등록함</label><br><br>
+            <input type="search" value="우편번호" size="36">
+            <button type="button"><a href="https://www.juso.go.kr/openIndexPage.do" target="_blank">주소찾기</a></button>
+            <br><br>
+            <button type="button" style="color:white; background-color:rgb(253, 67, 67)"><a
+                    href="file:///C:/Users/Sihyeon/Desktop/VScode/web/login.html" target="_blank">가입신청</a></button>
             <input type="reset" value="취소">
-        </div>
+    </div>
     </form>
 </body>
 
