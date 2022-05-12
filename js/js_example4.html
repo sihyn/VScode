@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="change"></div>
+    <br>
+    <button onclick="test()">빨강</button>
+    <button onclick="test1()">노랑</button>
+    <button onclick="test2()">초록</button>
+
+    <style>
+        div {
+            width: 100%;
+            background-color: transparent;
+            color: black;
+            font-size: xx-large;
+        }
+    </style>
+
+    <script>
+        //텍스트 값 입력받기
+        let text = prompt("텍스트를 입력해 주세요");
+        //값이 없으면 alert창 띄우기
+        if (!text || text == ' ')
+            alert("텍스트를 다시 입력해주세요");
+        else {
+            document.getElementById("change").innerHTML = text;
+        }
+
+        function test() {
+            alert("빨강색으로 바뀝니다");
+            document.getElementById('change').style.color = "#ff2400";
+        }
+    </script>
+    <script>
+        function test1() {
+            alert("노란색으로 바뀝니다");
+            document.getElementById('change').style.color = "#ffce00";
+        }
+    </script>
+    <script>
+        function test2() {
+            alert("초록색으로 바뀝니다");
+            document.getElementById('change').style.color = "#5EC75E";
+        }
+    </script>
+
+</body>
+
+</html>
