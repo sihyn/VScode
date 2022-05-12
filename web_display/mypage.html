@@ -8,63 +8,40 @@
     <title>Document</title>
 
     <style>
-        .header {
-            background-color: black;
+        * {
+            box-sizing: border-box;
         }
 
-        .star {
-            position: absolute;
-            top: 3px;
-            left: 8px;
-            border-color: transparent;
-            border-width: 10px;
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 25px;
         }
 
-        .top1 {
-            position: absolute;
-            top: 3px;
-            right: 224px;
-            background-color: black;
-            border-style: solid;
-            border-color: black;
-            border-width: 10px;
+        .flex-item-left {
+            background-color: #f1f1f1;
+            flex: 70%;
         }
 
-        .top2 {
-            position: absolute;
-            top: 3px;
-            right: 160px;
-            background-color: black;
-            border-style: solid;
-            border-color: black;
-            border-width: 10px;
+        .flex-item-right {
+            background-color: #f1f1f1;
+            flex: 5%;
         }
 
-        .top3 {
-            position: absolute;
-            top: 3px;
-            right: 84px;
-            background-color: black;
-            border-style: solid;
-            border-color: black;
-            border-width: 10px;
-        }
+        /* Responsive layout - makes a one column-layout instead of a two-column layout */
+        @media (max-width: 800px) {
 
-        .top4 {
-            position: absolute;
-            top: 3px;
-            right: 8px;
-            background-color: black;
-            border-style: solid;
-            border-color: black;
-            border-width: 10px;
+            .flex-item-right,
+            .flex-item-left {
+                flex: 100%;
+            }
         }
 
         .container {
-            position: relative;
+            position: flex;
             text-align: center;
             color: white;
-            top: 15px;
+            top: 10px;
         }
 
         .centered {
@@ -83,9 +60,8 @@
             font-size: larger;
         }
 
-        .button {
-            border-color: white;
-            color: white;
+
+        .button1 {
             padding: 8px 20px;
             text-align: center;
             text-decoration: none;
@@ -93,31 +69,29 @@
             font-size: 15px;
             margin: 4px 2px;
             cursor: pointer;
-        }
-
-        .button1 {
             background-color: transparent;
         }
     </style>
 </head>
 
 <body>
-    <div class="star" style="color:black">★</div>
-    <div class="top1" style="color:aqua;">Home</div>
-    <div class="top2" style="color:aqua;">About</div>
-    <div class="top3" style="color:aqua;">Projects</div>
-    <div class="top4" style="color:aqua;">Contact</div>
-    <br>
+    <div class="flex-container">
+        <div class="flex-item-left">★</div>
+        <div class="flex-item-right">home</div>
+        <div class="flex-item-right">about</div>
+        <div class="flex-item-right">projects</div>
+        <div class="flex-item-right">contact</div>
+    </div>
     <div class="container">
         <img src="https://i.pinimg.com/736x/f6/5f/4f/f65f4f3e8538c109fb9a44c8cc23c258.jpg" alt="space"
             style="width:100%;">
         <div class="centered">안녕하세요, 제 이름은 <b style="color:palegreen;">김시현</b>입니다<br>저는 개발자를 꿈꾸는 학생입니다
         </div>
         <div class="centered1">
-            <button class="button button1"><a href="https://github.com/sihyn" target="_blank">View my
-                    Work </a></button>
+            <div class="button1"><a href="https://github.com/sihyn" target="_blank" style="color:white; ">View my
+                    Work ></a></button>
+            </div>
         </div>
-    </div>
 
 </body>
 
