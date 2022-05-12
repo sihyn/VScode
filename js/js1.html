@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 같은 폴더의 my_script.js 가져옴 -->
+    <script src="my_script.js"></script>
+</head>
+
+<body>
+    <script>
+        // var 변수 선언 동시에 값을 초기화(var는 중복 선언 가능<<안 좋음)
+        var i = 2;
+        var name = '김시현';
+        // let 지역변수 선언 동시에 값을 초기화(let은 중복 선언 불가능)
+        let ii = 10;
+        // 상수
+        const student_cnt = 10;
+
+        let j = 5;
+        // 자바 스타일의 문자열 병합
+        var result = name + '은' + i + '살입니다';
+        // 나중에 추가된 문자열 병합
+        // 1 왼쪽의 `를 사용
+        result = `${name}은${i}살입니다`;
+
+        // 경고 (버튼3 함수)
+        function myAlert() {
+            alert('경고')
+        }
+    </script>
+
+    <!-- 버튼 -->
+    <input type="button" value="버튼1" onclick="javascript:alert('경고')">
+    <button onclick="alert('경고')">버튼2</button>
+    <button onclick="myAlert()">버튼3</button>
+    <button ondblclick="showMyName()">더블 클릭</button>
+</body>
+
+</html>
