@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery 설정 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // onload
+        $(function () {
+            console.log('onload 후에 동작!');
+
+            // 클릭 이벤트 설정
+            $('#button1').click(function () {
+                console.log('click1!');
+            });
+
+            // 기존 자바스크립트 클릭 이벤트
+            document.getElementById('button2').addEventListener('click', function () {
+                console.log('click2!');
+            });
+
+            // 기존 방식과 비슷한 방식
+            $('#button3').on('click', function () {
+                console.log('click3!');
+            });
+
+            // 이벤트 체인
+            $('#button4').click(function () {
+                console.log('click4!');
+            }).mouseover(function () {
+                console.log('마우스 오버');
+            }).mouseover(function () {
+                console.log('마우스 떠남');
+            });
+
+            $('#button5').click(function () {
+                //  $('#text').html('<b>html</b>');
+                //  $('#text').text('<b>html</b>');
+                $('#text').append('hello')
+                    .append(' world')
+                    .attr('class', 'hello');
+
+                $('.big-text').attr('name', 'hello');
+            });
+        });
+    </script>
+
+    <div id="title">title</div>
+    <div class="bigText">big text</div>
+    <div class="bigText">big text1</div>
+    <button id="button1">click1</button>
+    <button id="button2">click2</button>
+    <button id="button3">click3</button>
+    <button id="button4">click4</button>
+    <p id="text">글씨자리</p>
+    <button id="button5">click5</button>
+</body>
+
+</html>
