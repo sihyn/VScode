@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 70px;
+            font-size: 30px;
+            color: white;
+            border: 5px rgb(80, 80, 80) solid;
+            background-color: grey;
+            text-align: center;
+        }
+
+        .original {
+            color: white;
+            background-color: grey;
+            border-color: rgb(80, 80, 80);
+        }
+
+        .change {
+            color: black;
+            background-color: white;
+            border-color: black;
+        }
+
+        /* 박스 위치 지정 */
+        #html {
+            position: absolute;
+            top: 10;
+            left: 10px;
+        }
+
+        #css {
+            position: absolute;
+            top: 10;
+            left: 255px;
+        }
+
+        #jsp {
+            position: absolute;
+            top: 10;
+            left: 500px;
+        }
+    </style>
+
+    <!-- box에 각각 id 지정-->
+    <!-- onClick -->
+    <div id="html" onClick="clickHTML()">html</div>
+    <div id="css" onClick="clickCSS()">css</div>
+    <div id="jsp" onClick="clickJSP()">jsp</div>
+
+    <script>
+        function clickHTML() {
+            document.getElementById("html").className = 'change';
+            document.getElementById("css").className = 'original';
+            document.getElementById("jsp").className = 'original';
+        }
+        function clickCSS() {
+            document.getElementById("css").className = 'change';
+            document.getElementById("html").className = 'original';
+            document.getElementById("jsp").className = 'original';
+        }
+        function clickJSP() {
+            document.getElementById("jsp").className = 'change';
+            document.getElementById("html").className = 'original';
+            document.getElementById("css").className = 'original';
+        }
+    </script>
+
+</body>
+
+</html>
