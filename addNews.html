@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery 설정 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div {
+            padding: 10px;
+            font-size: large;
+            font-weight: 500;
+        }
+        /* id */
+        #mainBody {
+            width: 260px;
+            height: 600px;
+        }
+        #title {
+            justify-content: center;
+            background-color:rgb(41, 41, 141);
+            color: white;
+            font-size: large;
+            height: 30px;
+        }
+        #timeLine {
+            background-color:rgb(244, 244, 245);
+        }
+        .newsBox {
+            margin: 10px;
+            background-color:white;
+        }
+        /* button */
+        button {
+            display: inline-block;
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            background-color:rgb(92, 92, 102);
+            color: white;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $("#addNews").click(function () {
+                let name = prompt("기사 작성자");
+                let news = prompt("기사 내용입력")
+                $("#timeLine").append(`<div class="newsBox"><b>${name}</b>${news}</div>`);
+            });
+        });
+    </script>
+
+    <div id="mainBody">
+        <div id="title">기사 등록하기</div>
+        <div id="timeLine">
+        </div>
+        <button id="addNews">등록하기</button>
+    </div>
+</body>
+</html>
