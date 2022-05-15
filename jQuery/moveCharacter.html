@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0px;
+    }
+
+    div {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        display: inline-block;
+        border: 2px solid black;
+        width: 700px;
+        height: 700px;
+    }
+
+    #ryan {
+        position: absolute;
+        top: 250px;
+        left: 250px;
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<script>
+
+    $(function () {
+        var leftmove = 5;
+        var topmove = 5;
+        $(document).keydown(function (event) {
+            if (leftmove != '0') {
+                if (event.keyCode == '37') {
+                    $('#ryan').animate({ left: '-=50px' }, 'fast');
+                    leftmove -= 1;
+                }
+            }
+            if (leftmove != '10') {
+                if (event.keyCode == '39') {
+                    $('#ryan').animate({ left: '+=50px' }, 'fast');
+                    leftmove += 1;
+                }
+            }
+            if (topmove != '0') {
+                if (event.keyCode == '38') {
+                    $('#ryan').animate({ top: '-=50px' }, 'fast');
+                    topmove -= 1;
+                }
+            }
+            if (topmove != '10') {
+                if (event.keyCode == '40') {
+                    $('#ryan').animate({ top: '+=50px' }, 'fast');
+                    topmove += 1;
+                }
+            }
+
+        });
+    });
+</script>
+
+<body>
+    <div><img id="ryan"
+            src="https://item.kakaocdn.net/do/a7fd7c0630f8aea8419a565fb2773bbc82f3bd8c9735553d03f6f982e10ebe70"
+            alt="라이언"></div>
+</body>
+
+</html>
