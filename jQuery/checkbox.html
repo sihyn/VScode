@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- jQuery 설정 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>Document</title>
+        
+    </head>
+    <body>
+
+        <style>
+            table {
+                border: 1px black solid;
+                border-collapse: collapse;
+                text-align: center;
+            }
+            tr{
+                border: 1px black solid;
+                padding: 5px;
+            }
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+            .checkbox_table {
+                width: 80px;
+            }
+            .title {
+                width: 200px;
+            }
+            .time {
+                width: 100px;
+            }
+            #log {
+                position: absolute;
+                width: 120px;
+                height: 50px;
+                margin-top: 20px;
+                left: 300px;
+            }
+        </style>
+
+        <script>
+            // 시간
+            $(document).ready(function(){
+                 var now = new Date(); 
+                 var hr=now.getHours();//시
+                 hr = hr.toString();
+                 var min=now.getMinutes();//분 
+                 min = min<10 ? '0'+min.toString() : min.toString();
+                 var sec=now.getSeconds();//초 
+                 sec = sec < 10 ? '0'+sec.toString() : sec.toString();
+                  $("p").text(hr+":"+min+":"+sec);
+            });
+            
+            $(function () {
+                $("input:checkbox[name=checkAll]").change(function () {
+                    if (this.checked) $("input:checkbox[name=check]").prop("checked", true);
+                    else $("input:checkbox[name=check]").prop("checked", false);
+                });
+
+                $("input:checkbox[name=check]").change(function () {
+                    if (!$("input:checkbox[name=mycheck]").is(":checked")) {
+                        $("input:checkbox[name=checkAll]").prop("checked", false);
+                    }
+                });
+
+                $("#log").click(() => {
+                    $("input:checkbox[name=check]").each(function () {
+                        if (this.checked) {
+                            let idx = $("input:checkbox[name=check]").index(this);
+                            console.log(`${$(".title")[idx].textContent}\n`);
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <form action="">
+            <!-- 체크박스 표 -->
+            <table> 
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="checkAll" />확인</label>
+                    </td>
+                    <td class="title">제목</td>
+                    <td class="time">글쓴시각</td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">111111</td>
+                    <td class="time"><p></p></td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">Next Level</td>
+                    <td class="time"><p></p></td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">hello world</td>
+                    <td class="time"><p></p></td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">hihihihi</td>
+                    <td class="time"><p></p></td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">아아아아ㅏㅏㅏ아ㅏ</td>
+                    <td class="time"><p></p></td>
+                </tr>
+                <tr>
+                    <td class="checkbox_table">
+                        <label><input type="checkbox" name="check" /></label>
+                    </td>
+                    <td class="title">끝</td>
+                    <td class="time"><p></p></td>
+                </tr>
+            </table>
+        </form>
+        <button id="log">로그</button>
+    </body>
+</html>
