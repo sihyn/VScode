@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,60 +9,63 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
-   
-    #main{
+    #main {
         background: url(https://upload3.inven.co.kr/upload/2021/04/14/bbs/i016114298481.gif);
         position: absolute;
         background-size: 100%;
-            width: 700px;
-            height: 500px;
-            border: 2px black solid;
-            left: 50px;
-            top: 50px;
+        width: 700px;
+        height: 500px;
+        border: 2px black solid;
+        left: 50px;
+        top: 50px;
         text-align: center;
-    } 
-    #main h1{
-       
-        color:aquamarine;
-        font-weight: bold;
-        font-size:40px;
     }
-    #container{
+
+    #main h1 {
+
+        color: aquamarine;
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    #container {
         height: 20px;
     }
-    #main p{
-      font-weight: bold;
-        color:black;
-        font-size:25px;
-        display: none;  
+
+    #main p {
+        font-weight: bold;
+        color: black;
+        font-size: 25px;
+        display: none;
     }
-    #main button{
-        padding:5px;
+
+    #main button {
+        padding: 5px;
     }
-    </style>
-    
-    <script>
-    var flag=true;
-    function init(){
-            $(".game_start_button").click(function () {
-                    // game();
-                    location.href="file:///C:/Users/sihyn/Desktop/VSCode/jumpGame.html";
-                });
+</style>
+
+<script>
+    var flag = true;
+    function init() {
+        $(".game_start_button").click(function () {
+            // game();
+            location.href = "./jumpGame.html";
+        });
     }
-    
+
     //깜빡거리는 효과
-    function blink(){
-        var vision = (flag)? "none":"block";
-        document.querySelector("p").style.display= vision;
-        flag=!flag;
+    function blink() {
+        var vision = (flag) ? "none" : "block";
+        document.querySelector("p").style.display = vision;
+        flag = !flag;
     }
-    window.addEventListener("load", function(){
+    window.addEventListener("load", function () {
         init();
-        setInterval("blink()",600);
+        setInterval("blink()", 600);
     });
-    </script>
-    
-    
+</script>
+
+
 <body>
     <div id="main">
         <h1>Let's Jump!</h1>
@@ -69,9 +73,10 @@
             <p>PRESS</p>
         </div>
         <div class="game_start_button" id="button"><img
-            src="https://my-love-ijb.carrd.co/assets/images/image03.gif?v91997570594851" alt="시작버튼"
-            width="100px" height="80px"></div>
+                src="https://my-love-ijb.carrd.co/assets/images/image03.gif?v91997570594851" alt="시작버튼" width="100px"
+                height="80px"></div>
     </div>
-   
+
 </body>
+
 </html>
