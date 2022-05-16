@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+        }
+
+        #container {
+            background-image: url(https://img.freepik.com/free-vector/hand-drawn-spring-wallpaper_23-2148829855.jpg?size=626&ext=jpg&ga=GA1.2.1623628699.1635638400);
+            background-size: 100%;
+            position: absolute;
+            width: 700px;
+            height: 500px;
+            left: 50px;
+            top: 50px;
+            border: 2px black solid;
+        }
+
+        #mario {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #mariodead {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #killer {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 50px;
+            right: -100px;
+        }
+
+        #gameover {
+            position: absolute;
+            top: 40px;
+            left: 100px;
+        }
+
+        #start {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        #game_start {
+            margin: 0;
+            position: absolute;
+            top: 150px;
+            left: 200px;
+
+        }
+
+        #score {
+            position: absolute;
+            color: white;
+            font-size: x-large;
+            left: 20px;
+            top: 20px;
+        }
+
+        #background {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            /* background: url("https://img.freepik.com/free-vector/hand-drawn-spring-wallpaper_23-2148829855.jpg?size=626&ext=jpg&ga=GA1.2.1623628699.1635638400"); */
+            background-size: contain;
+            animation-name: bg-slide;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .myBack {
+            width: 100%;
+            height: 100%;
+            animation: movebg 35s cubic-bezier(0.57, 0.32, 0.43, 0.7) infinite;
+            background: url(https://thumbs.gfycat.com/EquatorialHideousGalapagospenguin-size_restricted.gif) center 0 / 1000px round;
+        }
+
+        @keyframes movebg {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: -500px 0px;
+            }
+
+            100% {
+                background-position: -1000px 0px;
+            }
+        }
+    </style>
+
+    <div id="container">
+        <div class="myBack"></div>
+        <img id="mario" src="https://t1.daumcdn.net/news/202105/21/newsade/20210521124123249aohp.gif" alt="mario">
+        <img id="mariodead" src="http://res.heraldm.com/content/image/2020/08/12/20200812000516_0.gif" alt="">
+        <img id="killer" src="https://cdn-icons-png.flaticon.com/512/1581/1581785.png" alt="killer">
+        <div id="score">SCORE : 0</div>
+        <div id="gameover"><img
+                src="https://media3.giphy.com/media/oNm1Y941jxUZgpJDKa/giphy.gif?cid=6c09b95253d26d3571966ff2841a22abaf9ab9b748554faf&rid=giphy.gif&ct=s"
+                alt="gameover" class="center">
+            <div class="game_start_button" id="game_start"><img
+                    src="https://cdn-icons-png.flaticon.com/128/5200/5200000.png" alt="시작버튼" width="100px"
+                    height="100px"></div>
+        </div>
+        <div class="game_start_button" id="start"><img
+                src="https://media.baamboozle.com/uploads/images/293689/1625500463_61155_gif-url.gif" alt="시작버튼"
+                width="150px" height="100px"></div>
+
+        <script>
+            const WIDTH = 1200;
+            const HEIGHT = 600;
+
+            let mario = $("#mario");
+            let killer = $("#killer");
+
+            // 상태
+            let isJumping = false;
+            let isGameOver = false;
+            let score = 0;
+
+            function jump() {
+                if (isJumping || isGameOver) {
+                    return;
+                }
+
+                isJumping = true;
+                mario.animate({ bottom: "+=100px" }, 500)
+                    .animate({ bottom: "-=100px" }, 500, function () {
+                        isJumping = false;
+                    });
+            }
+
+            function moveKiller() {
+                killer.animate({ right: "120%" }, 3000, function () {
+                    killer.css({ right: "-100px" });
+
+                    if (isGameOver == false) {
+                        setTimeout(moveKiller, 1000);
+                        score += 100;
+                        $("#score").text(`SCORE : ${score}`);
+                    }
+                });
+            }
+
+            function marioDead() {
+                let killerLeft = parseInt(killer.css("left").replace("px", ""));
+                let marioLeft = parseInt(mario.css("left").replace("px", ""));
+                let marioRight = marioLeft + 100;
+
+                if (isJumping == false
+                    && marioRight > killerLeft
+                    && killerLeft > marioLeft
+                ) {
+                    isGameOver = true;
+                }
+            }
+
+            function gameOver() {
+                isGameOver = true;
+                killer.stop();
+
+                // 게임오버 화면 보여주고
+                $("#gameover").show();
+                $("#start").hide();
+                $("#container").hide;
+                $("#mario").hide();
+                $("#mariodead").show();
+            }
+
+            function gameStart() {
+                $("#gameover").hide();
+                $("#start").show();
+                $("#container").show();
+                $("#mario").show();
+                $("#mariodead").hide();
+                isGameOver = false;
+
+                killer.css({ right: "-100px" });
+            }
+
+            $("body").keydown(function (event) {
+                // 마리오 현재 좌표 정보
+                let left = parseInt(mario.css("left").replace("px", ""));
+                let top = parseInt(mario.css("top").replace("px", ""));
+                let right = left + 100;
+                let bottom = top + 100;
+                let move = 25;  // 이동할 픽셀
+
+                switch (event.key) {
+                    case " ":
+                        jump();
+                        break;
+                }
+            });
+
+            $(".game_start_button").click(function () {
+                gameStart();
+            });
+
+            function game() {
+                setTimeout(moveKiller, 1000);
+
+                // 게임 화면 그리기 30frame
+                setInterval(function () {
+                    if (isGameOver) {
+                        gameOver();
+                        return score = 0;
+                    } else {
+                        // 1초에 30번 그리기
+
+                        // 마리오 사망 체크
+                        marioDead();
+                    }
+                }, 1000 / 30);
+            }
+
+            $(function () {
+                gameStart();
+
+                $(".game_start_button").click(function () {
+                    game();
+                });
+            });
+        </script>
+</body>
+
+</html>
