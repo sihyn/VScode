@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //y = f(x)                << 수학
+        //function f(x)           << JS
+        //x(input) => 내용(output) << JS 화살표 표기법, lamda 표기법이라고 한다
+        function loadDoc() {
+            fetch('people.json')
+                .then(response => response.json()) //then - Promise
+                // lamda 표기법이 아닌 기존방식
+                // .then(function (response) {
+                //     return response.json();
+                // })
+
+                // lamda방식
+                .then(json => {
+                    document.getElementById("demo").innerHTML = JSON.stringify(json);
+                    console.log(json);
+
+                    let result = `${json.name}의 기술 : ${json.skill}`;
+                    document.getElementById("result").textContent = result;
+                });
+        }
+
+    </script>
+    <div id="demo"></div>
+    <div id="result"></div>
+    <button onclick="loadDoc()">get data</button>
+
+</body>
+
+</html>
