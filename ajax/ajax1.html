@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //XMLHttpRequest 생성
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest(); //객체생성
+            //응답 왔을 때의 콜백 함수 정의
+            xhttp.onreadystatechange = function () {
+                //this >> xhttp
+                //https://developer.mozilla.org/ko/docs/Mozilla
+                //this.readyState == 4 : 정상 완료(응답이 오면 무조건 정상 완료(에러포함))
+                //this.status == 200 : 서버 입장에서 정상 동작이다(ok)
+                //this.status == 404 : 서버 입장에서 이거 좀 이상하다?(not fount)
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML =
+                        this.responseText;
+                }
+            };
+            //통신방식이나 대상을 설정
+            //방식: GET(읽기),POST(쓰기),UPDATE,DELETE,...
+            xhttp.open("GET", "ajax_info.txt", true);
+            //실행
+            xhttp.send();
+        }
+
+    </script>
+</body>
+<div id="demo"></div>
+<button onclick="loadDoc()">get data</button>
+
+</html>
