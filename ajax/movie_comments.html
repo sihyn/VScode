@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX5 - 영화 정보 상세</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            // javascript get parameter
+            const queryString = window.location.search;
+            const parameters = new URLSearchParams(queryString);
+            const id = parameters.get('id');
+
+            fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1`)
+                .then(response => response.json())
+                .then(jsonArray => {
+                    let results = jsonArray.results; // results data 배열 가져오기
+                    let imgURL = "https://image.tmdb.org/t/p/w500"; // img 파일 로드 위한 주소
+                    // Array에서, id값과 일치하는 index 찾기 
+                    let index = results.findIndex((element) => id == element.id);
+                    // 찾은 index로 해당하는 영화의 정보 연결하기
+                    let data = results[index];
+
+                    $('#movieComments').append(` <table id="movieTemplate">
+                                                            <tr>
+                                                                <td id="title" colspan="2">${data.title}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="poster"> <img id="poster_img" src="${imgURL + data.poster_path}" alt=""> </td>
+                                                                <td id="date_Vote"> 
+                                                                    <div id="openDate">개봉일 : ${data.release_date} </div> <br>
+                                                                     <div id="voteCount">◈${data.vote_count}</div> 
+                                                                     <div id="voteAverage">☆${data.vote_average} </div>
+                                                                </td>
+                                                            </tr>
+    
+                                                            <tr>
+                                                                <td id="overview" colspan="2">${data.overview}</td>
+                                                            </tr>
+                                                        </table>`);
+
+                });
+
+        })
+    </script>
+    <h2>Movie Information</h2>
+    <div id="movieComments"></div>
+    <!-- 스타일 지정 -->
+    <style>
+        #movieTemplate {
+            width: 60%;
+            padding: 2%;
+            border: 2px rgb(35, 129, 202) solid;
+            box-shadow: 0 4px 8px 0 rgb(16, 64, 101);
+            border-radius: 5%;
+            background-color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        #title {
+            padding-bottom: 2%;
+            text-align: center;
+            font-size: 45px;
+            color: black;
+            border-bottom: 2px solid;
+        }
+
+        #poster {
+            padding: 2%;
+            width: 65%;
+        }
+
+        #poster_img {
+            width: 100%;
+            height: 90%
+        }
+
+        #date_Vote {
+            display: inline;
+        }
+
+        #openDate {
+            position: relative;
+            top: 0;
+            font-size: 20px;
+        }
+
+        #voteCount {
+            display: inline-block;
+            padding: 2%;
+            width: 40%;
+            position: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 black;
+            text-align: center;
+            color: black;
+            font-size: 20px;
+        }
+
+        #voteAverage {
+            display: inline-block;
+            padding: 2%;
+            width: 40%;
+            position: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 black;
+            text-align: center;
+            color: black;
+            font-size: 20px;
+        }
+
+        #overview {
+            border-top: 2px solid;
+            padding-top: 2%;
+            font-size: 15pt;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+
+</body>
+
+</html>
