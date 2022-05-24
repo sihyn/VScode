@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- lodash -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 
@@ -18,8 +17,8 @@
             {{ message }}
         </div>
         <ul>
-            <li v-for="item in filteredPosts">
-                {{ item.trainLineNm }},{{ item.arvlMsg2 }}
+            <li v-for="item in realtimeArrivalList">
+                {{ item.trainLineNm }}, {{ item.arvlMsg2 }}
             </li>
         </ul>
     </div>
@@ -30,43 +29,31 @@
             data: {
                 message: '',
                 query: '',
-                posts: [], //전체 데이터
-                filteredPosts: [] //검색조건에 맞는 데이터만 필터링
+                realtimeArrivalList: [],  // 전체 데이터
             },
             created: function () {
-                // 통신
-                this.getPosts();
-
-                //디바운스 적용된 검색 함수 정의
-                //_(언더바)는 디바운스 의미
-                //1초안에 들어오는 것은 무시
-                this.debounceSerch = _.debounce(this.getPosts, 500);
+                // 디바운스 적용된 검색 함수 정의
+                this.debouncedSearch = _.debounce(this.getRealtimeArrivalList, 1000);
             },
             methods: {
-                getPosts: function () {
-                    let v = this;
+                getRealtimeArrivalList: function () {
+                    let vm = this;
+
                     fetch(`http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/${this.query}`)
                         .then(response => response.json())
                         .then(function (json) {
-                            v.posts = json.realtimeArrivalList;
-                            v.filteredPosts = json.realtimeArrivalList;
-                            //loading 사라짐
-                            v.message = '';
+                            vm.realtimeArrivalList = json.realtimeArrivalList;
+                            vm.message = '';
                         })
-                        //에러처리
                         .catch(function (error) {
-                            v.message = 'Error! API 요청에 오류가 있습니다';
-                        })
+                            vm.message = '에러!! API 요청에 오류가 있습니다';
+                        });
                 },
-                search: function (val) {
-                    this.filteredPosts = this.posts.filter(post => post.includes(val))
-                }
             },
             watch: {
                 query: function (val) {
-                    //loading
-                    this.message = 'loading...';
-                    this.debounceSerch(val);
+                    this.message = '로딩 ....';
+                    this.debouncedSearch(val);
                 }
             }
         })
