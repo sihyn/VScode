@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- lodash -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="query" placeholder="검색어">
+        <ul>
+            <li v-for="item in filteredPosts">
+                {{ item.trainLineNm }},{{ item.arvlMsg2 }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                query: '',
+                posts: [], //전체 데이터
+                filteredPosts: [] //검색조건에 맞는 데이터만 필터링
+            },
+            created: function () {
+                // 통신
+                this.getPosts();
+
+                //디바운스 적용된 검색 함수 정의
+                //_(언더바)는 디바운스 의미
+                //1초안에 들어오는 것은 무시
+                this.debounceSerch = _.debounce(this.getPosts, 500);
+            },
+            methods: {
+                getPosts: function () {
+                    let v = this;
+                    fetch(`http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/${this.query}`)
+                        .then(response => response.json())
+                        .then(function (json) {
+                            v.posts = json.realtimeArrivalList;
+                            v.filteredPosts = json.realtimeArrivalList;
+                        })
+                },
+                search: function (val) {
+                    this.filteredPosts = this.posts.filter(post => post.includes(val))
+                }
+            },
+            watch: {
+                query: function (val) {
+                    this.debounceSerch(val);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
